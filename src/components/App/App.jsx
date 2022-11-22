@@ -1,0 +1,60 @@
+import React, { Component } from 'react';
+import AddContactForm from 'components/AddContactForm/AddContactForm';
+import shortid from 'shortid';
+import ContactsList from 'components/ContactsList/ContactsList';
+import ContactsListItem from 'components/ContactListItem/ContactListItem';
+import { Container } from './App.styled';
+import Filter from 'components/Filter/Filter';
+
+export default class App extends Component {
+  state = {
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
+    filter: '',
+  };
+
+  handleInputChange = e => {
+    const { name, value } = e.currentTarget;
+    this.setState({ [name]: value });
+  };
+
+  addContact = ({ name, number }) => {
+    const { contacts } = this.state;
+    const contact = {
+      id: shortid.generate(),
+      name: name,
+      number: number,
+    };
+
+    const contactsNames = contacts.flatMap(({ name }) => name.toLowerCase());
+    const normalizedName = name.toLowerCase();
+
+    contactsNames.includes(normalizedName)
+      ? alert(`${name} is already in contacts!`)
+      : this.setState(({ contacts }) => ({
+          contacts: [contact, ...contacts],
+        }));
+  };
+
+  render() {
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLocaleLowerCase();
+    const visibleContacts = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+    return (
+      <Container>
+        <AddContactForm onSubmit={this.addContact} />
+
+        <ContactsList>
+          <Filter value={filter} onChange={this.handleInputChange} />
+          <ContactsListItem contacts={visibleContacts} />
+        </ContactsList>
+      </Container>
+    );
+  }
+}
