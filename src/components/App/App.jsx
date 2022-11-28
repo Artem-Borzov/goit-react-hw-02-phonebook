@@ -26,8 +26,8 @@ export default class App extends Component {
     const { contacts } = this.state;
     const contact = {
       id: shortid.generate(),
-      name: name,
-      number: number,
+      name,
+      number,
     };
 
     const contactsNames = contacts.flatMap(({ name }) => name.toLowerCase());
@@ -38,6 +38,12 @@ export default class App extends Component {
       : this.setState(({ contacts }) => ({
           contacts: [contact, ...contacts],
         }));
+  };
+
+  deleteContact = delId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(({ id }) => id !== delId),
+    }));
   };
 
   render() {
@@ -52,7 +58,10 @@ export default class App extends Component {
 
         <ContactsList>
           <Filter value={filter} onChange={this.handleInputChange} />
-          <ContactsListItem contacts={visibleContacts} />
+          <ContactsListItem
+            contacts={visibleContacts}
+            onDelete={this.deleteContact}
+          />
         </ContactsList>
       </Container>
     );
