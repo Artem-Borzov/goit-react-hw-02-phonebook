@@ -3,7 +3,7 @@ import AddContactForm from 'components/AddContactForm/AddContactForm';
 import shortid from 'shortid';
 import ContactsList from 'components/ContactsList/ContactsList';
 import ContactsListItem from 'components/ContactListItem/ContactListItem';
-import { Container } from './App.styled';
+import { Container, Title } from './App.styled';
 import Filter from 'components/Filter/Filter';
 
 export default class App extends Component {
@@ -59,7 +59,7 @@ export default class App extends Component {
     return (
       <Container>
         <AddContactForm onSubmit={this.addContact} />
-
+        <Title>Contacts</Title>
         <ContactsList>
           <Filter value={filter} onChange={this.handleInputChange} />
           <ContactsListItem

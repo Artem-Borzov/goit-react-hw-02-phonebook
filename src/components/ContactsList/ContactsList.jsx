@@ -1,14 +1,9 @@
 import React from 'react';
-import { Contacts, Title } from './ContactsList.styled';
+import { Contacts } from './ContactsList.styled';
 import PropTypes from 'prop-types';
 
 const ContactsList = ({ children }) => {
-  return (
-    <Contacts>
-      <Title>Contacts</Title>
-      {children}
-    </Contacts>
-  );
+  return <Contacts>{children}</Contacts>;
 };
 
 ContactsList.propTypes = {

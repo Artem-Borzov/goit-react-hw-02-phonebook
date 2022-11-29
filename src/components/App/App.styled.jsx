@@ -6,3 +6,7 @@ export const Container = styled.div`
   margin-right: auto;
   width: 1000px;
 `;
+
+export const Title = styled.h1`
+  color: green;
+`;
