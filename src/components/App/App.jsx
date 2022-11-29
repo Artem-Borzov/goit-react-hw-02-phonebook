@@ -60,8 +60,8 @@ export default class App extends Component {
       <Container>
         <AddContactForm onSubmit={this.addContact} />
         <Title>Contacts</Title>
+        <Filter value={filter} onChange={this.handleInputChange} />
         <ContactsList>
-          <Filter value={filter} onChange={this.handleInputChange} />
           <ContactsListItem
             contacts={visibleContacts}
             onDelete={this.deleteContact}
