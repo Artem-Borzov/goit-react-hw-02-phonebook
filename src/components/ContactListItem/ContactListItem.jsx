@@ -11,6 +11,10 @@ const ContactsListItem = ({ name, number, children }) => {
   );
 };
 
-ContactsListItem.propTypes = {};
+ContactsListItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 export default ContactsListItem;

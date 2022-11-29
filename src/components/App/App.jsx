@@ -62,6 +62,8 @@ export default class App extends Component {
         <Filter value={filter} onChange={this.handleInputChange} />
         {contacts.length === 0 ? (
           `No contacts yet`
+        ) : visibleContacts.length === 0 ? (
+          `No matches founded`
         ) : (
           <ContactsList
             contacts={visibleContacts}
