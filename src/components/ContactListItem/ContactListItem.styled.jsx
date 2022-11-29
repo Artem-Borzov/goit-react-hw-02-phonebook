@@ -6,8 +6,3 @@ export const Contact = styled.li`
   display: flex;
   justify-content: space-between;
 `;
-
-export const DeleteBtn = styled.button`
-  color: red;
-  margin-left: 15px;
-`;

@@ -1,33 +1,16 @@
 import React from 'react';
-import { Contact, DeleteBtn } from './ContactListItem.styled';
+import { Contact } from './ContactListItem.styled';
 import PropTypes from 'prop-types';
 
-const ContactsListItem = ({ contacts, onDelete }) => {
+const ContactsListItem = ({ name, number, children }) => {
   return (
-    <div>
-      {contacts.length === 0
-        ? `No contacts yet`
-        : contacts.map(({ id, name, number }) => (
-            <Contact key={id}>
-              {name}: {number}
-              <DeleteBtn onClick={() => onDelete(id)} type="button">
-                Delete
-              </DeleteBtn>
-            </Contact>
-          ))}
-    </div>
+    <Contact>
+      {name}: {number}
+      {children}
+    </Contact>
   );
 };
 
-ContactsListItem.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  onDelete: PropTypes.func.isRequired,
-};
+ContactsListItem.propTypes = {};
 
 export default ContactsListItem;

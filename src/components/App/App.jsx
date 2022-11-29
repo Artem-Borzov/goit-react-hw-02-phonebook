@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import AddContactForm from 'components/AddContactForm/AddContactForm';
 import shortid from 'shortid';
 import ContactsList from 'components/ContactsList/ContactsList';
-import ContactsListItem from 'components/ContactListItem/ContactListItem';
 import { Container, Title } from './App.styled';
 import Filter from 'components/Filter/Filter';
 
@@ -61,12 +60,14 @@ export default class App extends Component {
         <AddContactForm onSubmit={this.addContact} />
         <Title>Contacts</Title>
         <Filter value={filter} onChange={this.handleInputChange} />
-        <ContactsList>
-          <ContactsListItem
+        {contacts.length === 0 ? (
+          `No contacts yet`
+        ) : (
+          <ContactsList
             contacts={visibleContacts}
             onDelete={this.deleteContact}
           />
-        </ContactsList>
+        )}
       </Container>
     );
   }
