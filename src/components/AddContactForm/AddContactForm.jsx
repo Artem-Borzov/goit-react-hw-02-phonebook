@@ -5,8 +5,13 @@ import {
   FormInput,
   SubmitButton,
 } from './AddContactForm.styled';
+import PropTypes from 'prop-types';
 
 export default class AddContactForm extends Component {
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
+
   state = {
     name: '',
     number: '',
@@ -20,8 +25,7 @@ export default class AddContactForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.props.onSubmit(this.state);
-    this.reset();
+    this.props.onSubmit(this.state) && this.reset();
   };
 
   reset = () => {

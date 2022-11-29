@@ -33,11 +33,15 @@ export default class App extends Component {
     const contactsNames = contacts.flatMap(({ name }) => name.toLowerCase());
     const normalizedName = name.toLowerCase();
 
-    contactsNames.includes(normalizedName)
-      ? alert(`${name} is already in contacts!`)
-      : this.setState(({ contacts }) => ({
-          contacts: [contact, ...contacts],
-        }));
+    if (contactsNames.includes(normalizedName)) {
+      alert(`${name} is already in contacts!`);
+      return false;
+    } else {
+      this.setState(({ contacts }) => ({
+        contacts: [contact, ...contacts],
+      }));
+      return true;
+    }
   };
 
   deleteContact = delId => {
